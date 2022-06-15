@@ -16,7 +16,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GetMaterialApp(
-      title: 'Happy Kidz Ad',
+      title: 'Happy Kidz Admin',
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),

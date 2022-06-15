@@ -18,9 +18,9 @@ class NewProductScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     List<String> categories = [
-      'Dolls',
-      'Action Figures',
-      'Sports',
+      'Smoothies',
+      'Soft Drinks',
+      'Water',
     ];
     return Scaffold(
       appBar: AppBar(
