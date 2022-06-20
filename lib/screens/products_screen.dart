@@ -1,10 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
-
-import '/models/models.dart';
-import '/screens/screens.dart';
-import '/controllers/controllers.dart';
+import 'package:happykidzadmin/models/models.dart';
+import 'package:happykidzadmin/screens/screens.dart';
+import 'package:happykidzadmin/controllers/controllers.dart';
 
 class ProductsScreen extends StatelessWidget {
   ProductsScreen({Key? key}) : super(key: key);
@@ -14,9 +12,10 @@ class ProductsScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Color(0xffFCFCB8),
       appBar: AppBar(
         title: const Text('Toys'),
-        backgroundColor: Colors.black,
+        backgroundColor: Color(0xff07B300),
       ),
       body: Padding(
         padding: const EdgeInsets.all(10.0),
@@ -26,7 +25,7 @@ class ProductsScreen extends StatelessWidget {
               height: 100,
               child: Card(
                 margin: EdgeInsets.zero,
-                color: Colors.black,
+                color: Color(0xffB4FC20),
                 child: Row(
                   children: [
                     IconButton(
@@ -35,15 +34,15 @@ class ProductsScreen extends StatelessWidget {
                       },
                       icon: const Icon(
                         Icons.add_circle,
-                        color: Colors.white,
+                        color: Colors.black,
                       ),
                     ),
                     const Text(
-                      'Add a new Toy',
+                      'Add a New Toy',
                       style: TextStyle(
                         fontSize: 16,
                         fontWeight: FontWeight.bold,
-                        color: Colors.white,
+                        color: Colors.black,
                       ),
                     ),
                   ],
@@ -65,7 +64,7 @@ class ProductsScreen extends StatelessWidget {
                   },
                 ),
               ),
-            )
+            ),
           ],
         ),
       ),
@@ -112,8 +111,8 @@ class ProductCard extends StatelessWidget {
             Row(
               children: [
                 SizedBox(
-                  height: 80,
-                  width: 80,
+                  height: 65,
+                  width: 65,
                   child: Image.network(
                     product.imageUrl,
                     fit: BoxFit.cover,
@@ -125,42 +124,36 @@ class ProductCard extends StatelessWidget {
                     children: [
                       Row(
                         children: [
-                          const SizedBox(
-                            width: 50,
-                            child: Text(
-                              'Price',
-                              style: TextStyle(
-                                fontSize: 14,
-                                fontWeight: FontWeight.bold,
-                              ),
+                          Text(
+                            'Price',
+                            style: const TextStyle(
+                              fontSize: 10,
+                              fontWeight: FontWeight.bold,
                             ),
                           ),
-                          SizedBox(
-                            width: 175,
-                            child: Slider(
-                              value: product.price,
-                              min: 0,
-                              max: 25,
-                              divisions: 10,
-                              activeColor: Colors.black,
-                              inactiveColor: Colors.black12,
-                              onChanged: (value) {
-                                productController.updateProductPrice(
-                                  index,
-                                  product,
-                                  value,
-                                );
-                              },
-                              onChangeEnd: (value) {
-                                productController.saveNewProductPrice(
-                                    product, 'price', value);
-                              },
-                            ),
+                          Slider(
+                            value: product.price.toDouble(),
+                            min: 0,
+                            max: 25,
+                            divisions: 10,
+                            activeColor: Color(0xff07B300),
+                            inactiveColor: Colors.black12,
+                            onChanged: (value) {
+                              productController.updateProductPrice(
+                                index,
+                                product,
+                                value,
+                              );
+                            },
+                            onChangeEnd: (value) {
+                              productController.saveNewProductPrice(
+                                  product, 'price', value);
+                            },
                           ),
                           Text(
-                            '\$${product.price.toStringAsFixed(1)}',
+                            'R${product.price.toStringAsFixed(1)}',
                             style: const TextStyle(
-                              fontSize: 12,
+                              fontSize: 10,
                               fontWeight: FontWeight.bold,
                             ),
                           ),
@@ -168,45 +161,42 @@ class ProductCard extends StatelessWidget {
                       ),
                       Row(
                         children: [
-                          const SizedBox(
-                            width: 50,
-                            child: Text(
-                              'Quantity',
-                              style: TextStyle(
-                                fontSize: 14,
-                                fontWeight: FontWeight.bold,
-                              ),
+                          Text(
+                            'Qty.',
+                            style: TextStyle(
+                              fontSize: 10,
+                              fontWeight: FontWeight.bold,
                             ),
                           ),
-                          SizedBox(
-                            width: 175,
-                            child: Slider(
-                              value: product.quantity.toDouble(),
-                              min: 0,
-                              max: 100,
-                              divisions: 10,
-                              activeColor: Colors.black,
-                              inactiveColor: Colors.black12,
-                              onChanged: (value) {
-                                productController.updateProductQuantity(
-                                  index,
-                                  product,
-                                  value.toInt(),
-                                );
-                              },
-                              onChangeEnd: (value) {
-                                productController.saveNewProductQuantity(
-                                  product,
-                                  'quantity',
-                                  value.toInt(),
-                                );
-                              },
-                            ),
+                          const SizedBox(
+                            width: 6,
+                          ),
+                          Slider(
+                            value: product.quantity.toDouble(),
+                            min: 0,
+                            max: 100,
+                            divisions: 10,
+                            activeColor: Color(0xff07B300),
+                            inactiveColor: Colors.black12,
+                            onChanged: (value) {
+                              productController.updateProductQuantity(
+                                index,
+                                product,
+                                value.toInt(),
+                              );
+                            },
+                            onChangeEnd: (value) {
+                              productController.saveNewProductQuantity(
+                                product,
+                                'quantity',
+                                value.toInt(),
+                              );
+                            },
                           ),
                           Text(
                             '${product.quantity.toInt()}',
                             style: const TextStyle(
-                              fontSize: 12,
+                              fontSize: 10,
                               fontWeight: FontWeight.bold,
                             ),
                           ),
@@ -214,7 +204,7 @@ class ProductCard extends StatelessWidget {
                       ),
                     ],
                   ),
-                )
+                ),
               ],
             ),
           ],

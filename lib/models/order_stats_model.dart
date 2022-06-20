@@ -19,8 +19,8 @@ class OrderStats {
 
   factory OrderStats.fromSnapshot(DocumentSnapshot snap, int index) {
     return OrderStats(
-      index: index,
       dateTime: snap['dateTime'].toDate(),
+      index: index,
       orders: snap['orders'],
     );
   }

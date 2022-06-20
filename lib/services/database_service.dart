@@ -4,6 +4,18 @@ import 'package:happykidzadmin/models/models.dart';
 class DatabaseService {
   final FirebaseFirestore _firebaseFirestore = FirebaseFirestore.instance;
 
+  Future<List<OrderStats>> getOrderStats() {
+    return _firebaseFirestore
+        .collection('order_stats')
+        .orderBy('dateTime')
+        .get()
+        .then((querySnapshot) => querySnapshot.docs
+        .asMap()
+        .entries
+        .map((entry) => OrderStats.fromSnapshot(entry.value, entry.key))
+        .toList());
+  }
+
   Stream<List<Order>> getOrders() {
     return _firebaseFirestore.collection('orders').snapshots().map((snapshot) {
       return snapshot.docs.map((doc) => Order.fromSnapshot(doc)).toList();
@@ -13,8 +25,8 @@ class DatabaseService {
   Stream<List<Order>> getPendingOrders() {
     return _firebaseFirestore
         .collection('orders')
-        .where('isCancelled', isEqualTo: false)
         .where('isDelivered', isEqualTo: false)
+        .where('isCancelled', isEqualTo: false)
         .snapshots()
         .map((snapshot) {
       return snapshot.docs.map((doc) => Order.fromSnapshot(doc)).toList();
@@ -28,18 +40,6 @@ class DatabaseService {
         .map((snapshot) {
       return snapshot.docs.map((doc) => Product.fromSnapshot(doc)).toList();
     });
-  }
-
-  Future<List<OrderStats>> getOrderStats() {
-    return _firebaseFirestore
-        .collection('order_stats')
-        .orderBy('dateTime')
-        .get()
-        .then((querySnapshot) => querySnapshot.docs
-        .asMap()
-        .entries
-        .map((entry) => OrderStats.fromSnapshot(entry.value, entry.key))
-        .toList());
   }
 
   Future<void> addProduct(Product product) {

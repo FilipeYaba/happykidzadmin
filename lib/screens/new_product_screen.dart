@@ -1,17 +1,14 @@
-import 'package:flutter/material.dart';
-import 'package:happykidzadmin/models/product_model.dart';
+import 'package:happykidzadmin/models/models.dart';
 import 'package:happykidzadmin/services/database_service.dart';
 import 'package:happykidzadmin/services/storage_service.dart';
+import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
-
-import '/controllers/controllers.dart';
+import 'package:happykidzadmin/controllers/controllers.dart';
 
 class NewProductScreen extends StatelessWidget {
   NewProductScreen({Key? key}) : super(key: key);
-
   final ProductController productController = Get.find();
-
   StorageService storage = StorageService();
   DatabaseService database = DatabaseService();
 
@@ -23,9 +20,10 @@ class NewProductScreen extends StatelessWidget {
       'Water',
     ];
     return Scaffold(
+      backgroundColor: Color(0xffFCFCB8),
       appBar: AppBar(
         title: const Text('Add a Toy'),
-        backgroundColor: Colors.black,
+        backgroundColor: Color(0xff07B300),
       ),
       body: Padding(
         padding: const EdgeInsets.all(10.0),
@@ -37,7 +35,7 @@ class NewProductScreen extends StatelessWidget {
                 height: 100,
                 child: Card(
                   margin: EdgeInsets.zero,
-                  color: Colors.black,
+                  color: Color(0xffB4FC20),
                   child: Row(
                     children: [
                       IconButton(
@@ -66,15 +64,15 @@ class NewProductScreen extends StatelessWidget {
                         },
                         icon: const Icon(
                           Icons.add_circle,
-                          color: Colors.white,
+                          color: Colors.black,
                         ),
                       ),
                       const Text(
-                        'Add an Image of the Toy',
+                        'Add an Image',
                         style: TextStyle(
                           fontSize: 16,
                           fontWeight: FontWeight.bold,
-                          color: Colors.white,
+                          color: Colors.black,
                         ),
                       ),
                     ],
@@ -111,11 +109,8 @@ class NewProductScreen extends StatelessWidget {
                   },
                 ).toList(),
                 onChanged: (value) {
-                  productController.newProduct.update(
-                    'category',
-                        (_) => value,
-                    ifAbsent: () => value,
-                  );
+                  productController.newProduct
+                      .update('category', (_) => value, ifAbsent: () => value);
                 },
               ),
               const SizedBox(height: 10),
@@ -149,6 +144,7 @@ class NewProductScreen extends StatelessWidget {
                   onPressed: () {
                     database.addProduct(
                       Product(
+                        id: productController.newProduct['id'],
                         name: productController.newProduct['name'],
                         category: productController.newProduct['category'],
                         description:
@@ -167,7 +163,7 @@ class NewProductScreen extends StatelessWidget {
                     Navigator.pop(context);
                   },
                   style: ElevatedButton.styleFrom(
-                    primary: Colors.black,
+                    primary: Color(0xff07B300),
                   ),
                   child: const Text(
                     'Save',
@@ -237,23 +233,24 @@ class NewProductScreen extends StatelessWidget {
             ),
           ),
         ),
-        Expanded(
-          child: Slider(
-            value: (controllerValue == null) ? 0 : controllerValue,
-            min: 0,
-            max: 25,
-            divisions: 10,
-            activeColor: Colors.black,
-            inactiveColor: Colors.black12,
-            onChanged: (value) {
-              productController.newProduct.update(
-                name,
-                    (_) => value,
-                ifAbsent: () => value,
-              );
-            },
-          ),
+        /*Expanded(
+          child: */
+        Slider(
+          value: (controllerValue == null) ? 0 : controllerValue,
+          min: 0,
+          max: 25,
+          divisions: 10,
+          activeColor: Colors.black,
+          inactiveColor: Colors.black12,
+          onChanged: (value) {
+            productController.newProduct.update(
+              name,
+                  (_) => value,
+              ifAbsent: () => value,
+            );
+          },
         ),
+        /*),*/
       ],
     );
   }

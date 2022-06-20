@@ -1,5 +1,4 @@
 import 'dart:convert';
-
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:equatable/equatable.dart';
 
@@ -7,9 +6,9 @@ class Order extends Equatable {
   final int id;
   final int customerId;
   final List<int> productIds;
-  final double deliveryFee;
-  final double subtotal;
-  final double total;
+  final num deliveryFee;
+  final num subtotal;
+  final num total;
   final bool isAccepted;
   final bool isDelivered;
   final bool isCancelled;
@@ -32,9 +31,9 @@ class Order extends Equatable {
     int? id,
     int? customerId,
     List<int>? productIds,
-    double? deliveryFee,
-    double? subtotal,
-    double? total,
+    num? deliveryFee,
+    num? subtotal,
+    num? total,
     bool? isAccepted,
     bool? isDelivered,
     bool? isCancelled,

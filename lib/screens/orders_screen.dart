@@ -12,9 +12,10 @@ class OrdersScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Color(0xffFCFCB8),
       appBar: AppBar(
         title: const Text('Orders'),
-        backgroundColor: Colors.black,
+        backgroundColor: Color(0xff07B300),
       ),
       body: Column(
         children: [
@@ -50,23 +51,18 @@ class OrderCard extends StatelessWidget {
         .toList();
 
     return Padding(
-      padding: const EdgeInsets.only(
-        left: 10.0,
-        top: 10.0,
-        right: 10.0,
-      ),
+      padding: const EdgeInsets.only(left: 10.0, right: 10.0, top: 10.0),
       child: Card(
         margin: EdgeInsets.zero,
         child: Padding(
           padding: const EdgeInsets.all(10.0),
           child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Text(
-                    'Order ID: ${order.id}',
+                    "Order ID: ${order.id}",
                     style: const TextStyle(
                       fontSize: 16,
                       fontWeight: FontWeight.bold,
@@ -87,43 +83,46 @@ class OrderCard extends StatelessWidget {
                   physics: const NeverScrollableScrollPhysics(),
                   itemCount: products.length,
                   itemBuilder: (BuildContext context, int index) {
-                    return Row(
-                      children: [
-                        SizedBox(
-                          height: 50,
-                          width: 50,
-                          child: Image.network(
-                            products[index].imageUrl,
-                            fit: BoxFit.cover,
+                    return Padding(
+                      padding: const EdgeInsets.only(bottom: 10.0),
+                      child: Row(
+                        children: [
+                          SizedBox(
+                            height: 50,
+                            width: 50,
+                            child: Image.network(
+                              products[index].imageUrl,
+                              fit: BoxFit.cover,
+                            ),
                           ),
-                        ),
-                        const SizedBox(width: 10),
-                        Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Text(
-                              products[index].name,
-                              style: const TextStyle(
-                                fontSize: 14,
-                                fontWeight: FontWeight.bold,
-                              ),
-                            ),
-                            const SizedBox(height: 10),
-                            SizedBox(
-                              width: 280,
-                              child: Text(
-                                Product.products[index].description,
+                          const SizedBox(width: 10),
+                          Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text(
+                                products[index].name,
                                 style: const TextStyle(
-                                  fontSize: 12,
+                                  fontSize: 14,
+                                  fontWeight: FontWeight.bold,
                                 ),
-                                overflow: TextOverflow.clip,
-                                maxLines: 2,
                               ),
-                            ),
-                            const SizedBox(height: 5),
-                          ],
-                        ),
-                      ],
+                              const SizedBox(height: 10),
+                              SizedBox(
+                                width: 260,
+                                child: Text(
+                                  Product.products[index].description,
+                                  style: const TextStyle(
+                                    fontSize: 12,
+                                  ),
+                                  overflow: TextOverflow.clip,
+                                  maxLines: 2,
+                                ),
+                              ),
+                              const SizedBox(height: 5),
+                            ],
+                          ),
+                        ],
+                      ),
                     );
                   }),
               const SizedBox(height: 10),
@@ -201,7 +200,7 @@ class OrderCard extends StatelessWidget {
                       );
                     },
                     style: ElevatedButton.styleFrom(
-                      primary: Colors.black,
+                      primary: Color(0xff07B300),
                       minimumSize: const Size(150, 40),
                     ),
                     child: const Text(
@@ -220,7 +219,7 @@ class OrderCard extends StatelessWidget {
                       );
                     },
                     style: ElevatedButton.styleFrom(
-                      primary: Colors.black,
+                      primary: Colors.red,
                       minimumSize: const Size(150, 40),
                     ),
                     child: const Text(

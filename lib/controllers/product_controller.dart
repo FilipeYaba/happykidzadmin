@@ -1,6 +1,6 @@
+import 'package:get/get.dart';
 import 'package:happykidzadmin/models/models.dart';
 import 'package:happykidzadmin/services/database_service.dart';
-import 'package:get/get.dart';
 
 class ProductController extends GetxController {
   final DatabaseService database = DatabaseService();
@@ -16,8 +16,11 @@ class ProductController extends GetxController {
   var newProduct = {}.obs;
 
   get price => newProduct['price'];
+
   get quantity => newProduct['quantity'];
+
   get isRecommended => newProduct['isRecommended'];
+
   get isPopular => newProduct['isPopular'];
 
   void updateProductPrice(
