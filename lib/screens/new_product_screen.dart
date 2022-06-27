@@ -15,9 +15,8 @@ class NewProductScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     List<String> categories = [
-      'Smoothies',
-      'Soft Drinks',
-      'Water',
+      'Toys',
+      'Furniture',
     ];
     return Scaffold(
       backgroundColor: Color(0xffFCFCB8),
