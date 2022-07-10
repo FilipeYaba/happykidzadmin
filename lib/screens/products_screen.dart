@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:happykidzadmin/models/models.dart';
-import 'package:happykidzadmin/screens/screens.dart';
-import 'package:happykidzadmin/controllers/controllers.dart';
+import '/models/models.dart';
+import '/screens/screens.dart';
+import '/controllers/controllers.dart';
 
 class ProductsScreen extends StatelessWidget {
   ProductsScreen({Key? key}) : super(key: key);
@@ -14,7 +14,7 @@ class ProductsScreen extends StatelessWidget {
     return Scaffold(
       backgroundColor: Color(0xffFCFCB8),
       appBar: AppBar(
-        title: const Text('Toys'),
+        title: const Text('Products'),
         backgroundColor: Color(0xff07B300),
       ),
       body: Padding(
@@ -38,7 +38,7 @@ class ProductsScreen extends StatelessWidget {
                       ),
                     ),
                     const Text(
-                      'Add a New Toy',
+                      'Add a New Product',
                       style: TextStyle(
                         fontSize: 16,
                         fontWeight: FontWeight.bold,
@@ -112,7 +112,7 @@ class ProductCard extends StatelessWidget {
               children: [
                 SizedBox(
                   height: 65,
-                  width: 65,
+                  width: 56,
                   child: Image.network(
                     product.imageUrl,
                     fit: BoxFit.cover,
@@ -134,8 +134,8 @@ class ProductCard extends StatelessWidget {
                           Slider(
                             value: product.price.toDouble(),
                             min: 0,
-                            max: 25,
-                            divisions: 10,
+                            max: 7000,
+                            divisions: 23,
                             activeColor: Color(0xff07B300),
                             inactiveColor: Colors.black12,
                             onChanged: (value) {
@@ -174,8 +174,8 @@ class ProductCard extends StatelessWidget {
                           Slider(
                             value: product.quantity.toDouble(),
                             min: 0,
-                            max: 100,
-                            divisions: 10,
+                            max: 7000,
+                            divisions: 23,
                             activeColor: Color(0xff07B300),
                             inactiveColor: Colors.black12,
                             onChanged: (value) {

@@ -1,6 +1,6 @@
 import 'package:get/get.dart';
-import 'package:happykidzadmin/models/models.dart';
-import 'package:happykidzadmin/services/database_service.dart';
+import '/models/models.dart';
+import '/services/database_service.dart';
 
 class ProductController extends GetxController {
   final DatabaseService database = DatabaseService();

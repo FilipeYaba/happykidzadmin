@@ -1,20 +1,8 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:happykidzadmin/models/models.dart';
+import '/models/models.dart';
 
 class DatabaseService {
   final FirebaseFirestore _firebaseFirestore = FirebaseFirestore.instance;
-
-  Future<List<OrderStats>> getOrderStats() {
-    return _firebaseFirestore
-        .collection('order_stats')
-        .orderBy('dateTime')
-        .get()
-        .then((querySnapshot) => querySnapshot.docs
-        .asMap()
-        .entries
-        .map((entry) => OrderStats.fromSnapshot(entry.value, entry.key))
-        .toList());
-  }
 
   Stream<List<Order>> getOrders() {
     return _firebaseFirestore.collection('orders').snapshots().map((snapshot) {

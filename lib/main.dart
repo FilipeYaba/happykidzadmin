@@ -1,7 +1,7 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:happykidzadmin/screens/screens.dart';
+import '/screens/screens.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -23,7 +23,6 @@ class MyApp extends StatelessWidget {
       getPages: [
         GetPage(name: '/products', page: () => ProductsScreen()),
         GetPage(name: '/products/new', page: () => NewProductScreen()),
-        GetPage(name: '/orders', page: () => OrdersScreen())
       ],
     );
   }
